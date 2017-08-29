@@ -13,17 +13,17 @@ namespace SauliBlog.Controllers
         // GET: Fan
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: First/Details
-        public ActionResult Details()
-        {
             if (Fans.Count == 0)
             {
                 Fan f = new Fan { Birthday = new DateTime(1995, 12 ,12), Gender = Gender.Male, Name = "Tomer", Seniority = 1, Surname = "Sulimany" };
                 Fans.Add(f);
             }
+            return View(Fans);
+        }
+
+        // GET: First/Details
+        public ActionResult Details()
+        {
             return View(Fans);
         }
 

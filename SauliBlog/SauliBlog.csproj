@@ -131,6 +131,9 @@
     <Content Include="Content\fonts\Quicksand-Regular.otf" />
     <None Include="packages.config" />
     <Content Include="Views\Fan\Index.cshtml" />
+    <Content Include="Views\Fan\Create.cshtml" />
+    <Content Include="Views\Fan\Details.cshtml" />
+    <Content Include="Views\Fan\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
