@@ -10,17 +10,17 @@ using SauliBlog.Models;
 
 namespace SauliBlog.Controllers
 {
-    public class BlogController : Controller
+    public class PostsController : Controller
     {
         private BlogDbContext db = new BlogDbContext();
 
-        // GET: Blog
+        // GET: Posts
         public ActionResult Index()
         {
             return View(db.Posts.ToList());
         }
 
-        // GET: Blog/Details/5
+        // GET: Posts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace SauliBlog.Controllers
             return View(post);
         }
 
-        // GET: Blog/Create
+        // GET: Posts/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Blog/Create
+        // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,7 @@ namespace SauliBlog.Controllers
             return View(post);
         }
 
-        // GET: Blog/Edit/5
+        // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace SauliBlog.Controllers
             return View(post);
         }
 
-        // POST: Blog/Edit/5
+        // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +89,7 @@ namespace SauliBlog.Controllers
             return View(post);
         }
 
-        // GET: Blog/Delete/5
+        // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace SauliBlog.Controllers
             return View(post);
         }
 
-        // POST: Blog/Delete/5
+        // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -123,46 +123,5 @@ namespace SauliBlog.Controllers
             }
             base.Dispose(disposing);
         }
-
-        // POST: Blog/CommentAdd
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CommentAdd([Bind(Include = "ID,PostID,MyPost,Title,Author,AuthorWebsite,Content")] Comment comment)
-        {
-            Post post = db.Posts.Find(comment.PostID);
-
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                Console.WriteLine("SHIT HAPPENS\n");
-                // comment.CommentDate = DateTime.Now;
-
-                db.Comments.Add(comment);
-                db.SaveChanges();
-            }
-
-            Console.WriteLine("GOOD SHABATH\n");
-
-            return RedirectToAction("Index");
-        }
-
-        //[HttpPost]
-        //public ActionResult AddComment(
-        //    [Bind(Include = "ID,PostID,MyPost,Title,Author,AuthorWebsite,Content")] Comment comment)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        db.Entry(comment).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return RedirectToAction("Index");
-        //}
     }
 }

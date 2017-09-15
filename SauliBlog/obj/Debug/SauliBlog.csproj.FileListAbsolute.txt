@@ -75,3 +75,11 @@ C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\
 C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\Antlr3.Runtime.pdb
 C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\Newtonsoft.Json.xml
 C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\System.Web.Optimization.xml
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\EntityFramework.dll
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\EntityFramework.SqlServer.dll
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\EntityFramework.xml
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\EntityFramework.SqlServer.xml
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.init.resources
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.csproj.GenerateResource.Cache
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.ChangedHeaderToTitle.resources
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.revertType.resources
