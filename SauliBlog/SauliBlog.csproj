@@ -101,6 +101,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\flower.png" />
     <Content Include="Content\Images\intro_background.png" />
     <Content Include="Content\Images\intro_flower.png" />
@@ -110,10 +112,10 @@
     <Content Include="Content\Images\rss.png" />
     <Content Include="Content\Images\sidebar_background.png" />
     <Content Include="Content\Images\sidebar_section_background.png" />
+    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Content\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -132,8 +134,8 @@
     <None Include="packages.config" />
     <Content Include="Views\Fan\Index.cshtml" />
     <Content Include="Views\Fan\Create.cshtml" />
-    <Content Include="Views\Fan\Details.cshtml" />
     <Content Include="Views\Fan\Edit.cshtml" />
+    <Content Include="Views\Fan\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

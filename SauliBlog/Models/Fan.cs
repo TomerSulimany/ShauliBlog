@@ -14,12 +14,12 @@ namespace SauliBlog.Models
         [Display(Name = "ID")]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field can't be empty")]
         [DataType(DataType.Text)]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field can't be empty")]
         [DataType(DataType.Text)]
         [Display(Name = "Surname")]
         public string Surname { get; set; }

@@ -6,7 +6,6 @@
 
 <h2>Create</h2>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -27,7 +26,10 @@
             </div>
             @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+                <ul>
+                    <li class="form-gender"> @Html.RadioButtonFor(m => m.Gender, "Male", new { id = "male", @checked = true }) Male  </li>
+                    <li class="form-gender"> @Html.RadioButtonFor(m => m.Gender, "Female", new { id = "female" }) Female </li>
+                </ul>
             </div>
             @Html.LabelFor(m => m.Birthday, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">

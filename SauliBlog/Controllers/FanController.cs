@@ -41,7 +41,7 @@ namespace SauliBlog.Controllers
             {
                 Fans.Add(fan);
 
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -52,11 +52,11 @@ namespace SauliBlog.Controllers
         // GET: First/Edit/5
         public ActionResult Edit(int id)
         {
-            foreach (Fan emp in Fans)
+            foreach (Fan fan in Fans)
             {
-                if (emp.Name.Equals(id))
+                if (fan.ID.Equals(id))
                 {
-                    return View(emp);
+                    return View(fan);
                 }
             }
             return View("Error");
@@ -64,15 +64,15 @@ namespace SauliBlog.Controllers
 
         // POST: First/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Fan empT)
+        public ActionResult Edit(int id, Fan fanT)
         {
             try
             {
-                foreach (Fan emp in Fans)
+                foreach (Fan fan in Fans)
                 {
-                    if (emp.ID.Equals(id))
+                    if (fan.ID.Equals(id))
                     {
-                        emp.copy(empT);
+                        fan.copy(fanT);
                         return RedirectToAction("Index");
                     }
                 }
@@ -89,12 +89,12 @@ namespace SauliBlog.Controllers
         public ActionResult Delete(int id)
         {
             int i = 0;
-            foreach (Fan emp in Fans)
+            foreach (Fan fan in Fans)
             {
-                if (emp.ID.Equals(id))
+                if (fan.ID.Equals(id))
                 {
                     Fans.RemoveAt(i);
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Index");
                 }
                 i++;
             }

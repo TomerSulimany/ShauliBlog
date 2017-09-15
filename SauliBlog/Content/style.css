@@ -300,7 +300,7 @@ form label {
     display: table-cell;
     width: 140px;
     padding-right: 20px;
-    text-align: right;
+    text-align: left;
     font-weight: bold;
     vertical-align: top;
     margin: 0 3em 3em 0;
@@ -321,6 +321,10 @@ form textarea {
 
 form input[type="submit"] {
     margin-left: 162px;
+}
+
+form ul {
+    list-style-type: none;
 }
 
 /*------------------------------
