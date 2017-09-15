@@ -1,0 +1,35 @@
+﻿@model ShauliBlog.Models.Post
+
+<section>
+    <article class="blogPost">
+        <header>
+            <h2>@Html.DisplayFor(model => model.Title)</h2>
+            <p>
+                Posted on <time>@Html.DisplayFor(model => model.PublishDate)</time>
+                by <a href="@Html.ValueFor(model => model.AuthorWebsite)">@Html.DisplayFor(model => model.Author)</a>
+                - <a href="#comments">@Html.DisplayFor(model => model.Comments.Count) comments</a>
+            </p>
+        </header>
+
+        <dl>
+            <dd>@Html.DisplayFor(model => model.Content)</dd>
+
+            @if (File.Exists(Server.MapPath("~/Uploads/") + Model.ID + ".png"))
+            {
+                <dd>
+                    <img src="~/Uploads/@(Model.ID + ".png")" width="400" />
+                </dd>
+            }
+
+            @if (File.Exists(Server.MapPath("~/Uploads/") + Model.ID + ".mp4"))
+            {
+                <dd>
+                    <video controls="controls" style="width:400px;">
+                        <source src="~/Uploads/@(Model.ID + ".mp4")" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </dd>
+            }
+        </dl>
+    </article>
+</section>

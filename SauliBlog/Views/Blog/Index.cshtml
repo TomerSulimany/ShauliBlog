@@ -1,41 +1,58 @@
-﻿@model IEnumerable<SauliBlog.Models.Post>
+﻿@model IEnumerable<ShauliBlog.Models.Post>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Blog";
 }
 
-<h2>Index</h2>
+<form action="#" method="get">
+    <h3>Search posts</h3>
+    <p>
+        <label for="date">Date</label>
+        <input name="date" id="date" type="date" />
+    </p>
+    <p>
+        <label for="author">Author</label>
+        <input name="author" id="author" type="text" />
+    </p>
+    <p>
+        <label for="email">E-mail</label>
+        <input name="email" id="email" type="email" />
+    </p>
+    <p>
+        <label for="comment">Text</label>
+        <textarea name="comment" id="comment"></textarea>
+    </p>
+    <p>
+        <label for="range">Length</label>
+        <input name="range" id="range" type="range" min="1" max="10" />
+    </p>
+    <p><input type="submit" value="Search" /></p>
+</form>
 
-@Html.ActionLink("Create New", "Create")
-
-@foreach (var item in Model)
+@if (Model.Count() == 0)
 {
-    <section>
-        <article class="blogPost">
-            <header>
-                <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-                <p>
-                    Posted on <time datetime="2009-06-29T23:31+01:00">@Html.DisplayFor(modelItem => item.PublishDate)</time> by <a href="#">@Html.DisplayFor(modelItem => item.Author)</a> - <a href="#comments">3 comments</a>
-                </p>
-            </header>
-            <div>
-                <p>@Html.DisplayFor(modelItem => item.Content)</p>
-                <img src="~/Content/Images/flower.png" alt="Flower" /> <!--Html.DisplayNameFor(model => model.Image)-->
-                <video controls="controls">
-                    <source src="images/shauli.m4v" type="video/mp4"/>
-                    <!--Html.DisplayNameFor(model => model.Video)-->
-                </video>
-            </div>
-        </article>
-    </section>
-
+    <hr />
     <p>
-        @Html.Partial("CommentsList", item.Comments)
+        <h3>No posts yet.</h3>
     </p>
+    <hr />
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <hr />
+        <p>
+            @Html.Partial("Post", item)
+        </p>
 
-    <p>
-        @Html.Partial("CommentAdd", new SauliBlog.Models.Comment { PostID = item.ID })
-    </p>
+        <p>
+            @Html.Partial("CommentList", item.Comments)
+        </p>
 
+        <p>
+            @Html.Partial("CommentAdd", new ShauliBlog.Models.Comment { PostID = item.ID })
+        </p>
+        <hr />
+    }
 }

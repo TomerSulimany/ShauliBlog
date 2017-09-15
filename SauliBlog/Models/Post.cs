@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SauliBlog.Models
+namespace ShauliBlog.Models
 {
     public class Post
     {
         public int ID { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string AuthorWebsite { get; set; }
-        public DateTime PublishDate { get; set; }
-        public string Content { get; set; }
-        public string Image { get; set; }
-        public string Video { get; set; }
-        public List<Comment> Comments { get; set; }
 
-        public Post()
-        {
-            Comments = new List<Comment>();
-        }
+        [DisplayName("Title"), Required, StringLength(100)]
+        public string Title { get; set; }
+
+        [DisplayName("Author"), Required, StringLength(30)]
+        public string Author { get; set; }
+
+        [DisplayName("Website"), StringLength(30), Url]
+        public string AuthorWebsite { get; set; }
+
+        [DisplayName("Post Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        public DateTime PublishDate { get; set; }
+
+        [DisplayName("Content"), Required]
+        public string Content { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

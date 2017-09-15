@@ -1,8 +1,7 @@
-﻿@model SauliBlog.Models.Comment
+﻿@model ShauliBlog.Models.Comment
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -12,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MyPost.Title)
+            @Html.DisplayNameFor(model => model.Post.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MyPost.Title)
+            @Html.DisplayFor(model => model.Post.Title)
         </dd>
 
         <dt>
@@ -44,16 +43,23 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.WhenTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhenTaken)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Content)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Content)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.PostID })
 </p>

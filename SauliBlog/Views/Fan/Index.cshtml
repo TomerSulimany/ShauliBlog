@@ -1,8 +1,7 @@
-﻿@model IEnumerable<SauliBlog.Models.Fan>
+﻿@model IEnumerable<ShauliBlog.Models.Fan>
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <p>
@@ -49,7 +48,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
         </tr>

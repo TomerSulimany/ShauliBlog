@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SauliBlog.Models
+namespace ShauliBlog.Models
 {
     public class Fan : IEquatable<Fan>
     {
@@ -29,11 +29,12 @@ namespace SauliBlog.Models
         public Gender Gender { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Birthday")]
         public DateTime Birthday { get; set; }
 
-        [Required]
+        [Required, Range(0, 100)]
         [DataType(DataType.Text)]
         [Display(Name = "Seniority")]
         public int Seniority { get; set; }
