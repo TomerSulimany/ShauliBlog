@@ -388,3 +388,26 @@ footer ul li a {
     font-family: Quicksand;
     src: url(fonts/Quicksand-Regular.otf);
 }
+
+/*------------------------------
+= autocomplete 
+------------------------------*/
+
+#author-suggesstion-box {
+    margin: 0;
+    padding: 10px;
+    position: absolute;
+    background: white;
+    border: gray;
+    z-index: 1000;
+    width: 90%;
+}
+
+.fan-suggestion-option:hover {
+    background: #c8c8da;
+}
+
+#fan-suggestion-list{
+    margin:0px;
+    padding:0px;
+}
