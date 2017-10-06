@@ -84,8 +84,22 @@ namespace ShauliBlog.Controllers
                 return RedirectToAction("Error");
             }
         }
-
         // GET: First/Delete/5
+        public ActionResult Delete(int id)
+        {
+            int i = 0;
+            foreach (Fan fan in Fans)
+            {
+                if (fan.ID.Equals(id))
+                {
+                    Fans.RemoveAt(i);
+                    return RedirectToAction("Index");
+                }
+                i++;
+            }
+            return RedirectToAction("Error");
+        }
+        
         public ActionResult AutoCompleteFan(string txt)
         {
             List<Fan> matchFans = new List<Fan>();
