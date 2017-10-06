@@ -9,13 +9,9 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
     <script src="~/Content/jquery-3.2.1.min.js"></script>
-    <script src="~/Content/jquery.autocomplete.min.js"></script>
+    <script src="~/Scripts/IntroCanvas.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="title">Ha-Blog Shel Shauli</h1>
-    </header>
-
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-collapse collapse">
@@ -28,17 +24,8 @@
             </div>
         </div>
     </nav>
-        <section id="intro">
-            <!-- Introduction -->
-            <header>
-                <h2>Do you have questions for me?</h2>
-            </header>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
-            </p>
-            <img src="~/Content/Images/intro_shauli.png" alt="Shauli" />
-        </section>
+ 
+    <canvas id="intro-canvas" width="1000" height="250"></canvas>
 
         <div class="container body-content">
             @RenderBody()
@@ -56,7 +43,7 @@
                     <header>
                         <h3>About</h3>
                     </header>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut la</p>
+                    <p>This is the blog of shauli, in this blog you can ask any question you want and shauli will answer it.</p>
                 </section>
                 <section id="blogroll">
                     <header>
