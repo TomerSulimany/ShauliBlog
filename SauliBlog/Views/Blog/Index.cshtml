@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ShauliBlog.Models.Post>
 
+<script src="~/Scripts/FanAutoComplete.js"></script>
 @{
     ViewBag.Title = "Blog";
 }
@@ -12,7 +13,8 @@
     </p>
     <p>
         <label for="author">Author</label>
-        <input name="author" id="author" type="text" />
+        <input name="author" id="Author" type="text" />
+        <div id="author-suggesstion-box"></div>
     </p>
     <p>
         <label for="email">E-mail</label>

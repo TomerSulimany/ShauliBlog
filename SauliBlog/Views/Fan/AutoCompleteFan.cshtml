@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ShauliBlog.Models.Fan>
+@{
+    Layout = null;
+}    
+
+<ul id="fan-suggestion-list">
+
+@foreach (var item in Model)
+{
+    <li class="fan-suggestion-option" name="@Html.DisplayFor(modelItem => item.Name)">
+    @Html.DisplayFor(modelItem => item.Name)
+    </li>
+}
+
+</ul>

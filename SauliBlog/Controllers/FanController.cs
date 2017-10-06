@@ -86,19 +86,22 @@ namespace ShauliBlog.Controllers
         }
 
         // GET: First/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult AutoCompleteFan(string txt)
         {
+            List<Fan> matchFans = new List<Fan>();
             int i = 0;
-            foreach (Fan fan in Fans)
+            if (txt != null && txt != "")
             {
-                if (fan.ID.Equals(id))
+                foreach (Fan fan in Fans)
                 {
-                    Fans.RemoveAt(i);
-                    return RedirectToAction("Index");
+                    if (fan.Name.StartsWith(txt))
+                    {
+                        matchFans.Add(fan);
+                    }
+                    i++;
                 }
-                i++;
             }
-            return RedirectToAction("Error");
+            return View(matchFans);
         }
     }
 }
