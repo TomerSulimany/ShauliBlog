@@ -11,13 +11,13 @@
 /* Tell the browser to render HTML 5 elements as block */
 header, footer, section, aside, nav, article {
     display: block;
-    text-align:left;
+    text-align: left;
 }
 
 body {
     margin: 0 auto;
     padding: 22px 0;
-    width: 940px;
+    width: 100%;
     background: #F0F0F0;
     font-family: Quicksand;
     text-align: left;
@@ -49,117 +49,71 @@ nav {
     left: 0;
     width: 100%;
     background: url("Images/nav_background.png"), linear-gradient(#eb01a5, #d13531);
-
 }
 
-nav ul {
-    margin: 0 auto;
-    width: 940px;
-    list-style: none;
-}
+    nav ul {
+        margin: 0 auto;
+        width: 990px;
+        list-style: none;
+    }
 
-nav ul li {
-    float: left;
-}
+        nav ul li {
+            float: left;
+        }
 
-nav ul li a {
-    display: block;
-    margin-right: 20px;
-    width: 140px;
-    font-size: 14px;
-    line-height: 44px;
-    text-align: center;
-    text-decoration: none;
-    color: #777;
-}
+            nav ul li a {
+                display: block;
+                margin-right: 20px;
+                width: auto;
+                font-size: 16px;
+                line-height: 44px;
+                text-align: center;
+                text-decoration: none;
+                color: darkgrey;
+                text-shadow: 1px 1px #a0a0a0;
+            }
 
-nav ul li a:hover {
-    color: #fff;
-}
+                nav ul li a:hover {
+                    color: white;
+                }
 
-nav ul li.selected a {
-    color: #fff;
-}
+            nav ul li.selected a {
+                color: #5c5c5c;
+            }
 
-nav ul li.subscribe a {
-    margin-left: 22px;
-    padding-left: 33px;
-    text-align: left;
-    background: url("Images/rss.png") left center no-repeat;
-}
+            nav ul li.subscribe a {
+                margin-left: 22px;
+                padding-left: 33px;
+                text-align: left;
+                background: url("Images/rss.png") left center no-repeat;
+            }
 
 /*enlarge logo*/
- .rss {
+.rss {
     /*height:30px;*/
     /*width:30px;*/
-    text-align:center;
+    text-align: center;
     -webkit-transition: all 2s ease-in-out;
     -moz-transition: all 2s ease-in-out;
     -ms-transition: all 2s ease-in-out;
     transition: all 2s ease-in-out;
 }
 
-/*rotate logo*/
- .rss:hover {
-    -webkit-transform:rotate(360deg) scale(1,1);
-    -moz-transform:rotate(360deg) scale(1,1);
-    -ms-transform:rotate(360deg) scale(1,1);
-    transform:rotate(360deg) scale(1,1);
-}
+    /*rotate logo*/
+    .rss:hover {
+        -webkit-transform: rotate(360deg) scale(1,1);
+        -moz-transform: rotate(360deg) scale(1,1);
+        -ms-transform: rotate(360deg) scale(1,1);
+        transform: rotate(360deg) scale(1,1);
+    }
 
 /*------------------------------
 =INTRODUCTION
 ------------------------------*/
 
-#intro {
-    position: relative;
-    margin-top: 66px;
-    padding: 44px;
-    background: url("Images/intro_background.png") repeat-x, linear-gradient(#777777, #d13531);
-
-    /* Background-size not implemented yet */
-    -webkit-background-size: 100%;
-    -o-background-size: 100%;
-    -khtml-background-size: 100%;
-
-    /* Border-radius not implemented yet */
-    -moz-border-radius: 22px;
-    -webkit-border-radius: 22px;
-}
-
-#intro h2, #intro p {
-    position: relative;
-    z-index: 9999;
-    width: 436px;
-}
-
-#intro h2 {
-    padding: 0 0 22px 0;
-    font-weight: normal;
-    color: #fff;
-}
-
-#intro p {
-    padding: 0;
-    color: #d9f499;
-}
-
-#intro img {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 653px;
-    height: 100%;
-
-    /* Border-radius not implemented yet */
-    -moz-border-radius: 22px;
-    -webkit-border-radius: 22px;
-}
-
 /*------------------------------
 =CONTENT AREA AND SIDEBAR LAYOUT
 ------------------------------*/
-
 #content {
     display: table;
     text-align: left;
@@ -178,29 +132,29 @@ aside {
     background: url("Images/sidebar_background.png") top left;
 }
 
-/*------------------------------
+    /*------------------------------
 =SIDEBAR
 ------------------------------*/
-aside section {
-    margin: 22px 0 0 22px;
-    padding: 11px 22px;
-    background: url("Images/sidebar_section_background.png") repeat-x, linear-gradient(135deg, #00FFED, #004DFF);
-}
+    aside section {
+        margin: 22px 0 0 22px;
+        padding: 11px 22px;
+        background: url("Images/sidebar_section_background.png") repeat-x, linear-gradient(135deg, #00FFED, #004DFF);
+    }
 
-aside section ul {
-    margin: 0 0 0 22px;
-    list-style: none;
-}
+        aside section ul {
+            margin: 0 0 0 22px;
+            list-style: none;
+        }
 
-aside section ul li a {
-    display: block;
-    text-decoration: none;
-    color: #000;
-}
+            aside section ul li a {
+                display: block;
+                text-decoration: none;
+                color: #000;
+            }
 
-aside section ul li a:hover {
-    text-decoration: underline;
-}
+                aside section ul li a:hover {
+                    text-decoration: underline;
+                }
 
 /*------------------------------
 =BLOG POST
@@ -211,16 +165,15 @@ aside section ul li a:hover {
     color: #777;
 }
 
-.blogPost header p a:hover {
-    text-decoration: none;
-    color: #000;
-}
+    .blogPost header p a:hover {
+        text-decoration: none;
+        color: #000;
+    }
 
 .blogPost div {
     /* Column-count not implemented yet */
     -moz-column-count: 2;
     -webkit-column-count: 2;
-
     /* Column-gap not implemented yet */
     -moz-column-gap: 22px;
     -webkit-column-gap: 22px;
@@ -238,6 +191,12 @@ aside section ul li a:hover {
     -webkit-box-shadow: 3px 3px 7px #777;
 }
 
+.post-content {
+    column-count: 2;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    column-rule-color: gray;
+}
 /*------------------------------
 =COMMENTS
 ------------------------------*/
@@ -248,38 +207,38 @@ aside section ul li a:hover {
     border-top: 1px solid #d7d7d7;
 }
 
-#comments article {
-    display: table;
-    padding: 22px;
-}
+    #comments article {
+        display: table;
+        padding: 22px;
+    }
 
-#comments article:nth-child(odd) {
-    padding: 21px;
-    background: #E3E3E3;
-    border: 1px solid #d7d7d7;
-    -moz-border-radius: 11px;
-    -webkit-border-radius: 11px;
-}
+        #comments article:nth-child(odd) {
+            padding: 21px;
+            background: #E3E3E3;
+            border: 1px solid #d7d7d7;
+            -moz-border-radius: 11px;
+            -webkit-border-radius: 11px;
+        }
 
-#comments article header {
-    display: table-cell;
-    width: 220px;
-    padding-right: 22px;
-}
+        #comments article header {
+            display: table-cell;
+            width: 220px;
+            padding-right: 22px;
+        }
 
-#comments article header a {
-    display: block;
-    font-weight: bold;
-    color: #000;
-}
+            #comments article header a {
+                display: block;
+                font-weight: bold;
+                color: #000;
+            }
 
-#comments article header a:hover {
-    text-decoration: none;
-}
+                #comments article header a:hover {
+                    text-decoration: none;
+                }
 
-#comments article p {
-    padding: 0;
-}
+        #comments article p {
+            padding: 0;
+        }
 
 /*------------------------------
 =COMMENT FORM
@@ -290,42 +249,42 @@ form {
     border-top: 1px solid #d7d7d7;
 }
 
-form div {
-    display: table;
-    margin-bottom: 22px;
-    padding: 0 22px;
-}
+    form div {
+        display: table;
+        margin-bottom: 22px;
+        padding: 0 22px;
+    }
 
-form label {
-    display: table-cell;
-    width: 140px;
-    padding-right: 20px;
-    text-align: left;
-    font-weight: bold;
-    vertical-align: top;
-    margin: 0 3em 3em 0;
-}
+    form label {
+        display: table-cell;
+        width: 140px;
+        padding-right: 20px;
+        text-align: left;
+        font-weight: bold;
+        vertical-align: top;
+        margin: 0 3em 3em 0;
+    }
 
-form input[type="text"], form input[type="email"], form input[type="url"] {
-    display: table-cell;
-    width: 300px;
-    height: 20px;
-    border: 1px solid #d7d7d7;
-}
+    form input[type="text"], form input[type="email"], form input[type="url"] {
+        display: table-cell;
+        width: 300px;
+        height: 20px;
+        border: 1px solid #d7d7d7;
+    }
 
-form textarea {
-    width: 300px;
-    height: 100px;
-    border: 1px solid #d7d7d7;
-}
+    form textarea {
+        width: 300px;
+        height: 100px;
+        border: 1px solid #d7d7d7;
+    }
 
-form input[type="submit"] {
-    margin-left: 162px;
-}
+    form input[type="submit"] {
+        margin-left: 162px;
+    }
 
-form ul {
-    list-style-type: none;
-}
+    form ul {
+        list-style-type: none;
+    }
 
 /*------------------------------
 =FOOTER
@@ -337,45 +296,45 @@ footer {
     background: #222;
 }
 
-footer div {
-    display: table;
-    margin: 0 auto;
-    padding: 44px 0;
-    width: 940px;
-    color: #777;
-}
+    footer div {
+        display: table;
+        margin: 0 auto;
+        padding: 44px 0;
+        width: 940px;
+        color: #777;
+    }
 
-footer div section {
-    display: table-cell;
-    width: 300px;
-}
+        footer div section {
+            display: table-cell;
+            width: 300px;
+        }
 
-footer div #about, footer div #blogroll {
-    padding-right: 20px;
-}
+        footer div #about, footer div #blogroll {
+            padding-right: 20px;
+        }
 
-footer h3 {
-    color: #FFF;
-}
+    footer h3 {
+        color: #FFF;
+    }
 
-footer a {
-    color: #999;
-}
+    footer a {
+        color: #999;
+    }
 
-footer a:hover {
-    color: #FFF;
-    text-decoration: none;
-}
+        footer a:hover {
+            color: #FFF;
+            text-decoration: none;
+        }
 
-footer ul {
-    margin: 0 0 0 40px;
-    list-style: square;
-    color: #565656;
-}
+    footer ul {
+        margin: 0 0 0 40px;
+        list-style: square;
+        color: #565656;
+    }
 
-footer ul li a {
-    display: block;
-}
+        footer ul li a {
+            display: block;
+        }
 
 /*------------------------------
 = Changes are here
@@ -395,19 +354,26 @@ footer ul li a {
 
 #author-suggesstion-box {
     margin: 0;
-    padding: 10px;
+    padding: 0px;
     position: absolute;
     background: white;
-    border: gray;
+    border: 1px solid gray;
     z-index: 1000;
     width: 90%;
 }
 
-.fan-suggestion-option:hover {
-    background: #c8c8da;
+.fan-suggestion-option {
+    border: 1px solid gray;
+    margin: 2px;
+    padding: 1px;
+    border-radius: 3px;
 }
 
-#fan-suggestion-list{
-    margin:0px;
-    padding:0px;
+    .fan-suggestion-option:hover {
+        background: #c8c8da;
+    }
+
+#fan-suggestion-list {
+    margin: 0px;
+    padding: 0px;
 }
