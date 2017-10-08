@@ -73,4 +73,5 @@ namespace ShauliBlog.Models
     {
         Male, Female
     }
+
 }
