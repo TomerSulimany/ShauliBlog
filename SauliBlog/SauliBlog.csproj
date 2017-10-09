@@ -136,13 +136,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710221449574_InitialCreate.cs" />
-    <Compile Include="Migrations\201710221449574_InitialCreate.Designer.cs">
-      <DependentUpon>201710221449574_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710221604032_Name1.cs" />
-    <Compile Include="Migrations\201710221604032_Name1.Designer.cs">
-      <DependentUpon>201710221604032_Name1.cs</DependentUpon>
+    <Compile Include="Migrations\201710092117542_Migration33.cs" />
+    <Compile Include="Migrations\201710092117542_Migration33.Designer.cs">
+      <DependentUpon>201710092117542_Migration33.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -188,13 +184,8 @@
     <EmbeddedResource Include="Migrations\201710081916233_init.resx">
       <DependentUpon>201710081916233_init.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710221449574_InitialCreate.resx">
-      <DependentUpon>201710221449574_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710221604032_Name1.resx">
-      <DependentUpon>201710221604032_Name1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710092117542_Migration33.resx">
+      <DependentUpon>201710092117542_Migration33.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
