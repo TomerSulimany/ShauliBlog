@@ -5,33 +5,21 @@
     ViewBag.Title = "Blog";
 }
 
-<form action="#" method="get">
-    <h3>Search posts</h3>
-    <p>
-        <label for="date">Date</label>
-        <input name="date" id="date" type="date" />
-    </p>
-    <p>
-        <label for="author">Author</label>
-        <input name="author" id="Author" type="text" autocomplete = "off"/>
-        <div id="author-suggesstion-box"></div>
-    </p>
-    <p>
-        <label for="email">E-mail</label>
-        <input name="email" id="email" type="email" />
-    </p>
-    <p>
-        <label for="comment">Text</label>
-        <textarea name="comment" id="comment"></textarea>
-    </p>
-    <p>
-        <label for="range">Length</label>
-        <input name="range" id="range" type="range" min="1" max="10" />
-    </p>
-    <p><input type="submit" value="Search" /></p>
+<form action="/Blog/SearchPost" method="post">
+    <span>Data:</span> 
+    <input type="date" name="PublishDate" id="PublishDate" size="15">
+    <br />
+    <span>Author:</span> 
+    <input type="text" value="" name="Author" id="Author" size="10" autocomplete="off">
+    <div id="author-suggesstion-box"></div>
+    <br />
+    <span>Email:</span>
+    <input type="email" name="WriterEmail" id="WriterEmail" size="25">
+    <br />
+    <input type="submit" value="Search Post">
 </form>
 
-@if (Model.Count() == 0)
+@if (ViewBag.Posts.Count == 0)
 {
     <hr />
     <p>
@@ -41,20 +29,43 @@
 }
 else
 {
-    foreach (var item in Model)
+    foreach (var item in ViewBag.Posts)
     {
+        var post = (ShauliBlog.Models.Post)item.post;
         <hr />
         <p>
-            @Html.Partial("Post", item)
+            @Html.Partial("Post", post)
         </p>
 
         <p>
-            @Html.Partial("CommentList", item.Comments)
+            @Html.Partial("CommentList", post.Comments)
         </p>
 
         <p>
             @Html.Partial("CommentAdd", new ShauliBlog.Models.Comment { PostID = item.ID })
         </p>
+
         <hr />
+
     }
+
+    <form action="/Blog/CountPostByWriter" method="post">
+        <input type="submit" value="Show Statistics">
+    </form>
+   <!-- <form action="/Blog/RecommendPost" id="recommend" method="post">
+        <input type="hidden" name="first_name" id="first_name">
+        <input type="hidden" name="last_name" id="last_name">
+        <input type="submit" value="Recommend Posts For Me" onclick="UpdateName()">
+    </form> 
+
+    <script>
+    function UpdateName() {
+        // Retrieve
+        console.log("Retrive data");
+        console.log(localStorage.getItem("fb_first_name"));
+        document.getElementById("first_name").value = localStorage.getItem("fb_first_name");
+        document.getElementById("last_name").value = localStorage.getItem("fb_last_name");
+    }
+    </script>-->
 }
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -27,6 +28,11 @@ namespace ShauliBlog.Models
 
         [DisplayName("Content"), Required]
         public string Content { get; set; }
+
+        public int? FanUser { get; set; }
+
+        [ForeignKey("FanUser")]
+        public Fan Fan { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

@@ -131,13 +131,14 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\FanController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710081916233_init.cs" />
-    <Compile Include="Migrations\201710081916233_init.Designer.cs">
-      <DependentUpon>201710081916233_init.cs</DependentUpon>
+    <Compile Include="Migrations\201710092117542_Migration33.cs" />
+    <Compile Include="Migrations\201710092117542_Migration33.Designer.cs">
+      <DependentUpon>201710092117542_Migration33.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -168,6 +169,9 @@
     <Content Include="Views\Shared\CommentList.cshtml" />
     <Content Include="Views\Shared\Post.cshtml" />
     <Content Include="Views\Fan\AutoCompleteFan.cshtml" />
+    <Content Include="Views\Blog\SimpleStatistics.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,6 +183,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710081916233_init.resx">
       <DependentUpon>201710081916233_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710092117542_Migration33.resx">
+      <DependentUpon>201710092117542_Migration33.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

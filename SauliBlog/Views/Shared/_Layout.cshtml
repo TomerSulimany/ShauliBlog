@@ -17,9 +17,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
-                    <li>@Html.ActionLink("Manage Posts", "Index", "Posts")</li>
                     <li>@Html.ActionLink("Fan Club", "Index", "Fan")</li>
+                    <li>@Html.ActionLink("Admin Panel", "Login", "Login")</li>
                     <li class="subscribe"><a href="#" class="rss">Subscribe via. RSS</a></li>
+                    @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
+                    {
+                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                    }
+
                 </ul>
             </div>
         </div>
