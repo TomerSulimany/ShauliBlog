@@ -1,7 +1,9 @@
 ﻿using ShauliBlog.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,104 +11,121 @@ namespace ShauliBlog.Controllers
 {
     public class FanController : Controller
     {
-        static List<Fan> Fans = new List<Fan>();
+        private BlogDbContext db = new BlogDbContext();
+
         // GET: Fan
         public ActionResult Index()
         {
-            if (Fans.Count == 0)
-            {
-                Fan f = new Fan { Birthday = new DateTime(1995, 12 ,12), Gender = Gender.Male, Name = "Tomer", Seniority = 1, Surname = "Sulimany" };
-                Fans.Add(f);
-            }
-            return View(Fans);
+            return View(db.Fans.ToList());
         }
 
-        // GET: First/Details
-        public ActionResult Details()
+        // GET: Fan/Details/5
+        public ActionResult Details(int? id)
         {
-            return View(Fans);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Fan fan = db.Fans.Find(id);
+            if (fan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fan);
         }
 
         // GET: First/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: First/Create
+        // POST: Fans/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(Fan fan)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,Name,Surname,Gender,Birthday,Seniority")] Fan fan)
         {
-            try
+            if (ModelState.IsValid)
             {
-                Fans.Add(fan);
+                db.Fans.Add(fan);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View();
         }
 
-        // GET: First/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Fans/Edit/5
+        public ActionResult Edit(int? id)
         {
-            foreach (Fan fan in Fans)
+            if (id == null)
             {
-                if (fan.ID.Equals(id))
-                {
-                    return View(fan);
-                }
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View("Error");
+            Fan fan = db.Fans.Find(id);
+            if (fan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fan);
         }
 
-        // POST: First/Edit/5
+        // POST: Fans/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(int id, Fan fanT)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,Name,Surname,Gender,Birthday,Seniority")] Fan fan)
         {
-            try
+            if (ModelState.IsValid)
             {
-                foreach (Fan fan in Fans)
-                {
-                    if (fan.ID.Equals(id))
-                    {
-                        fan.copy(fanT);
-                        return RedirectToAction("Index");
-                    }
-                }
+                db.Entry(fan).State = EntityState.Modified;
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return RedirectToAction("Error");
-            }
+            return View(fan);
         }
-        // GET: First/Delete/5
-        public ActionResult Delete(int id)
+
+        // GET: Fans/Delete/5
+        public ActionResult Delete(int? id)
         {
-            int i = 0;
-            foreach (Fan fan in Fans)
+            if (id == null)
             {
-                if (fan.ID.Equals(id))
-                {
-                    Fans.RemoveAt(i);
-                    return RedirectToAction("Index");
-                }
-                i++;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return RedirectToAction("Error");
+            Fan fan = db.Fans.Find(id);
+            if (fan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fan);
         }
-        
+
+        // POST: Fans/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Fan fan = db.Fans.Find(id);
+
+            db.Fans.Remove(fan);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult AutoCompleteFan(string txt)
         {
             List<Fan> matchFans = new List<Fan>();
             int i = 0;
             if (txt != null && txt != "")
             {
-                foreach (Fan fan in Fans)
+                foreach (Fan fan in db.Fans.ToList())
                 {
                     if (fan.Name.StartsWith(txt))
                     {

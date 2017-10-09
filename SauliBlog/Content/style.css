@@ -359,7 +359,7 @@ footer {
     background: white;
     border: 1px solid gray;
     z-index: 1000;
-    width: 90%;
+    width: 300px;
 }
 
 .fan-suggestion-option {

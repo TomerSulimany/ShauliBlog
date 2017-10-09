@@ -2,6 +2,7 @@
 $(document).ready(function () {
 
     var in_suggestion_foucos = false;
+    $("#author-suggesstion-box").hide();
 
     $("#Author").focusout(function () {
         if (!in_suggestion_foucos)
