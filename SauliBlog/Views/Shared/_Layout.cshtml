@@ -10,6 +10,9 @@
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
     <script src="~/Content/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/IntroCanvas.js"></script>
+    @{
+        ViewBag.RSS = ShauliBlog.Controllers.BlogController.GetRSS();
+    }
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -41,14 +44,41 @@
     <canvas id="intro-canvas" width="1000" height="250"></canvas>
 
         <div class="container body-content">
-            @RenderBody()
+            <div id="mainContent">
+                @RenderBody()
+            </div>
+
+            <aside>
+                <div id="grad2" style="direction:rtl;">
+                    <section>
+                        <header>
+                            <h3>@ViewBag.RSS.Title.Text</h3>
+                            <h4>מסעדות לפרלמנט</h4>
+                        </header>
+                        <ul>
+                            @for (int i = 0; i  < 3; i++)
+                            {
+                                <li>
+                                    <a href="@ViewBag.RSS.Items[i].Links[0].Uri.AbsoluteUri">
+                                        @ViewBag.RSS.Items[i].Title.Text
+                                        <br />
+                                        <br />
+                                        @Html.Raw(ViewBag.RSS.Items[i].Summary.Text)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </section>
+                </div>
+            </aside>
+
             <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>
         </div>
 
-
+        
         <footer>
             <!-- Footer -->
             <div>
