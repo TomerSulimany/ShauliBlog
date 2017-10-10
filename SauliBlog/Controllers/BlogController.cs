@@ -65,6 +65,13 @@ namespace ShauliBlog.Controllers
             public int Count { get; set; }
         }
 
+        public class GenderPostObj
+        {
+            public int Id { get; set; }
+            public Gender Gender { get; set; }
+            public int Count { get; set; }
+        }
+
         public IEnumerable<PostWithFans> JoinPostWithFans()
         {
             var q = db.Posts.Join(db.Fans,
@@ -111,21 +118,33 @@ namespace ShauliBlog.Controllers
                     Name = p.Key.Name,
                     Count = p.Count()
                 });
+            var t = db.Posts.GroupBy(p => new { Gender = p.Fan.Gender })
+                .Select(p => new GenderPostObj()
+                {
+                    Gender = p.Key.Gender,
+                    Count = p.Count()
+                });
             ViewBag.CountPostByWriter = q.ToList();
-            ViewBag.Posts = JoinPostWithFans().ToList();
+            ViewBag.CountPostByGender = t.ToList();
+            ViewBag.PostWithFans = JoinPostWithFans().ToList();
+
 
             return View("SimpleStatistics");
         }
 
         [HttpPost, ActionName("RecommendPost")]
-        public ActionResult RecommendPost(string first_name, string last_name)
+        public ActionResult RecommendPost()
         {
-            ViewBag.Context = "Recommened Posts For You";
             ViewBag.Comments = db.Comments.ToList();
             ViewBag.Posts = new List<PostWithFans>();
+            string UserName = "";
+            if (Session["logged_in"] != null)
+            {
+                UserName = Session["name"].ToString().ToLower();
+            }
 
-            var writerPosts = JoinPostWithFans().Where(p => p.post.Author == first_name + " " + last_name);
-            var nonWriterPosts = JoinPostWithFans().Where(p => p.post.Author != first_name + " " + last_name);
+            var writerPosts = JoinPostWithFans().Where(p => UserName == p.post.Author.ToLower());
+            var nonWriterPosts = JoinPostWithFans().Where(p => UserName != p.post.Author.ToLower());
             foreach (var obj1 in nonWriterPosts)
             {
                 var post = obj1.post;
@@ -138,6 +157,7 @@ namespace ShauliBlog.Controllers
                     }
                 }
             }
+
 
             return View("Index");
         }
