@@ -19,6 +19,8 @@ namespace ShauliBlog.Models
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Fan> Fans { get; set; }
+
+        public System.Data.Entity.DbSet<SauliBlog.Models.Twitter> Twitters { get; set; }
     }
     /*
     public class MyDbConfiguration : DbMigrationsConfiguration<BlogDbContext>

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ShauliBlog.Models;
 using System.Data.Entity.Core.Objects;
+using System.ServiceModel.Syndication;
+using System.Xml;
 
 namespace ShauliBlog.Controllers
 {
@@ -162,7 +164,19 @@ namespace ShauliBlog.Controllers
             return View("Index");
         }
 
-        
+        /// <summary>
+        /// News RSS
+        /// </summary>
+        public static SyndicationFeed GetRSS()
+        {
+            using (XmlReader reader = XmlReader.Create("http://rss.walla.co.il/?w=/9/1092/0/@rss.e"))
+            {
+                SyndicationFeed rssData = SyndicationFeed.Load(reader);
+
+                return rssData;
+            }
+        }
+
         private void Init()
         {
             // Create uploads directory
