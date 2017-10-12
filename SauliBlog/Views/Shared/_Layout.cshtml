@@ -38,7 +38,7 @@
 
     @{
         ViewBag.RSS = ShauliBlog.Controllers.BlogController.GetRSS();
-    }
+     }
 </head>
 
 @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
@@ -66,6 +66,8 @@
                         {
                             <li>@Html.ActionLink("Login", "Login", "Login")</li>
                         }
+
+                        <li>@Html.ActionLink("Twitter", "Index", "Twitter")</li>
 
                     </ul>
                 </div>
@@ -187,6 +189,7 @@ else
                             <li>@Html.ActionLink("Login", "Login", "Login")</li>
                         }
 
+                        <li>@Html.ActionLink("Twitter", "Index", "Twitters")</li>
                     </ul>
                 </div>
             </div>
@@ -229,11 +232,6 @@ else
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-7">
-                            <div class="list-group col-lg-4" style="margin-right:20px;">
-                                <script>
-                                    loadMapScenario();
-                                </script>
-                            </div>
                             <div id="map_canvas" style="height: 500px; width: 500px; float:right;"></div>
                         </div>
                         <h4>רק משתמשים מחוברים יכולים לראות את המפה</h4>
