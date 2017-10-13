@@ -1,41 +1,41 @@
 ﻿@model IEnumerable<SauliBlog.Models.Twitter>
 
-@{
-    ViewBag.Title = "Twitter";
-}
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
     @{
-        ViewBag.RSS = SauliBlog.Controllers.TwittersController.GetRSS();
+    ViewBag.Title = "Twitter";
     }
-    <script type='text/javascript'>
+
+    <!DOCTYPE html>
+
+    <html>
+
+    <head>
+        @{
+        ViewBag.RSS = SauliBlog.Controllers.TwittersController.GetRSS();
+        }
+        <script type='text/javascript'>
             var map;
             function getTweets() {
                 map = new Microsoft.Maps.Map(document.getElementById('map_canvas'), {
                     credentials: 'ApRh9o_3iouGO8RRIL3fGALvkMCsF4HvrPhsSmFYoCtwkKbYEBaFD0Jk5qVDtzsy'
                 });
         }
-    </script>
+        </script>
 
-    <meta name="viewport" content="width=device-width" />
-    <title>Number of tweets containing Shauli</title>
-</head>
-<body>
+        <meta name="viewport" content="width=device-width" />
+        <title>Number of tweets containing Shauli</title>
+    </head>
+    <body>
 
-    <aside>
-        <div id="grad2" style="direction:rtl;">
-            <section>
-                <header>
-                    <h3>@ViewBag.RSS.Title.Text</h3>
-                    <h4>ציוצי שאולי</h4>
-                </header>
-                <ul>
-                    @for (int i = 0; i < 3; i++)
-                    {
+        <aside>
+            <div id="grad2" style="direction:rtl;">
+                <section>
+                    <header>
+                        <h3>@ViewBag.RSS.Title.Text</h3>
+                        <h4>ציוצי שאולי</h4>
+                    </header>
+                    <ul>
+                        @for (int i = 0; i < 3; i++)
+                        {
                         <li>
                             <a href="@ViewBag.RSS.Items[i].Links[0].Uri.AbsoluteUri">
                                 @ViewBag.RSS.Items[i].Title.Text
@@ -44,30 +44,30 @@
                                 @Html.Raw(ViewBag.RSS.Items[i].Summary.Text)
                             </a>
                         </li>
-                    }
-                </ul>
-            </section>
-        </div>
-    </aside>
+                        }
+                    </ul>
+                </section>
+            </div>
+        </aside>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th></th>
-        </tr>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>
+            </tr>
+            }
 
-    </table>
-</body>
+        </table>
+    </body>
 </html>
