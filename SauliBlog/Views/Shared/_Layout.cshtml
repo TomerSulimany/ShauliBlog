@@ -29,14 +29,6 @@
                     
                         <li class="subscribe"><a href="#" class="rss">Subscribe via. RSS</a></li>
                     
-                        @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
-                        {
-                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
-                        }
-                        else
-                        {
-                            <li>@Html.ActionLink("Login", "Login", "Login")</li>
-                        }
 
                         <li>@Html.ActionLink("Twitter", "Index", "Twitter")</li>
 
@@ -44,6 +36,7 @@
                 </div>
             </div>
         </nav>
+
 
         @{
             ViewBag.RSS = ShauliBlog.Controllers.BlogController.GetRSS();
@@ -63,18 +56,31 @@
         </div>
         <canvas id="intro-canvas" width="1000" height="250"></canvas>
 
+        <aside>
+            <div id="user-panel">
+                <section>
+                    <ul>
+                        <li><h3>User panel</h3></li>
+                        @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
+                        {
+
+                            <li>Hello: @(Session["name"])</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                        }
+                        else
+                        {
+                            <li>Hello new fan!</li>
+                            <li>@Html.ActionLink("Register", "Create", "Fan")</li>
+                            <li>@Html.ActionLink("Login", "Login", "Login")</li>
+                        }
+                    </ul>
+                </section>
+            </div>
+        </aside>
             <div class="container body-content">
                 <div id="mainContent">
                     @RenderBody()
                 </div>
-
-                <aside>
-                    <div id="user-panel" style="direction:rtl;">
-                        <section>
- 
-                        </section>
-                    </div>
-                </aside>
 
             </div>
 

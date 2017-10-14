@@ -128,17 +128,18 @@ nav {
 
 aside {
     display: table-cell;
-    width: 300px;
-    background: url("Images/sidebar_background.png") top left;
+    width: 150px;
+    float: right;
+    background: #999;
 }
 
     /*------------------------------
 =SIDEBAR
 ------------------------------*/
     aside section {
-        margin: 22px 0 0 22px;
-        padding: 11px 22px;
-        background: url("Images/sidebar_section_background.png") repeat-x, linear-gradient(135deg, #00FFED, #004DFF);
+        margin: 5px;
+        padding: 5px;
+        background: #a0a0a0 ;
     }
 
         aside section ul {
