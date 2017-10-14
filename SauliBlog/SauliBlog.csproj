@@ -146,6 +146,14 @@
     <Compile Include="Migrations\201710131304084_test.Designer.cs">
       <DependentUpon>201710131304084_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710141838427_kaki.cs" />
+    <Compile Include="Migrations\201710141838427_kaki.Designer.cs">
+      <DependentUpon>201710141838427_kaki.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710141925081_Location.cs" />
+    <Compile Include="Migrations\201710141925081_Location.Designer.cs">
+      <DependentUpon>201710141925081_Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -200,6 +208,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710131304084_test.resx">
       <DependentUpon>201710131304084_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141838427_kaki.resx">
+      <DependentUpon>201710141838427_kaki.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141925081_Location.resx">
+      <DependentUpon>201710141925081_Location.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -35,5 +35,8 @@ namespace ShauliBlog.Models
         public Fan Fan { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        [DisplayName("Location"), StringLength(100)]
+        public string Location { get; set; }
     }
 }

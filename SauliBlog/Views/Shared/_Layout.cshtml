@@ -10,40 +10,11 @@
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
     <script src="~/Content/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/IntroCanvas.js"></script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?branch=release'></script>
-    <script type='text/javascript'>
-        var map;
-        function loadMapScenario() {
-            map = new Microsoft.Maps.Map(document.getElementById('map_canvas'), {
-                credentials: 'ApRh9o_3iouGO8RRIL3fGALvkMCsF4HvrPhsSmFYoCtwkKbYEBaFD0Jk5qVDtzsy'
-            });
-        }
 
-        function FindLocation(loc) {
-            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-                var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                var requestOptions = {
-                    bounds: map.getBounds(),
-                    where: loc,
-                    callback: function (answer, userData) {
-                        map.setView({ bounds: answer.results[0].bestView });
-                        map.entities.pop();
-                        map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
-                    }
-                };
-                searchManager.geocode(requestOptions);
-            });
-        }
-    </script>
 
-    @{
-        ViewBag.RSS = ShauliBlog.Controllers.BlogController.GetRSS();
-     }
 </head>
 
-@if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
-{
-    <body onload="loadMapScenario();">
+    <body>
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-collapse collapse">
@@ -73,7 +44,23 @@
                 </div>
             </div>
         </nav>
- 
+
+        @{
+            ViewBag.RSS = ShauliBlog.Controllers.BlogController.GetRSS();
+        }
+        <div id="rss">
+        <h6>@ViewBag.RSS.Title.Text</h6>
+        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                @for (int i = 0; i < 3; i++)
+                {
+                        <a href="@ViewBag.RSS.Items[i].Links[0].Uri.AbsoluteUri">
+                            @ViewBag.RSS.Items[i].Title.Text
+                        </a>
+                        <a> | </a>
+                }
+
+        </marquee>
+        </div>
         <canvas id="intro-canvas" width="1000" height="250"></canvas>
 
             <div class="container body-content">
@@ -82,50 +69,13 @@
                 </div>
 
                 <aside>
-                    <div id="grad2" style="direction:rtl;">
+                    <div id="user-panel" style="direction:rtl;">
                         <section>
-                            <header>
-                                <h3>@ViewBag.RSS.Title.Text</h3>
-                                <h4>מסעדות חדשות לפרלמנט</h4>
-                            </header>
-                            <ul>
-                                @for (int i = 0; i < 3; i++)
-                                {
-                                    <li>
-                                        <a href="@ViewBag.RSS.Items[i].Links[0].Uri.AbsoluteUri">
-                                            @ViewBag.RSS.Items[i].Title.Text
-                                            <br />
-                                            <br />
-                                            @Html.Raw(ViewBag.RSS.Items[i].Summary.Text)
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
+ 
                         </section>
                     </div>
                 </aside>
 
-                @* Map is shown only for logged in users *@
-                <div class="panel panel-default">
-                    <div class="panel-heading">מסעדות מומלצות של שאולי</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="list-group col-lg-4" style="margin-right:20px;">
-                                @*@foreach (ShauliBlog.Models.FanClub fan in Model)
-                                {
-                                    <script>
-                                        FindLocation('@Html.Raw(fan.Address)');
-                                    </script>
-                                }*@
-                            </div>
-                            <div class="col-lg-7">
-                                <div id="map_canvas" style="height: 500px; width: 500px; float:right;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
-               
-                <hr />
             </div>
 
         
@@ -161,120 +111,7 @@
             </footer>
 
     </body>
-}
-
-else
-{
-    <body>
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
-                        <li>@Html.ActionLink("Fan Club", "Index", "Fan")</li>
-
-                        @if ((Session["admin"] != null) && (Session["admin"].Equals(true)))
-                        {
-                            <li>@Html.ActionLink("Manage posts", "Index", "Posts")</li>
-                        }
-
-                        <li class="subscribe"><a href="#" class="rss">Subscribe via. RSS</a></li>
-
-                        @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
-                        {
-                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
-                        }
-                        else
-                        {
-                            <li>@Html.ActionLink("Login", "Login", "Login")</li>
-                        }
-
-                        <li>@Html.ActionLink("Twitter", "Index", "Twitters")</li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <canvas id="intro-canvas" width="1000" height="250"></canvas>
-
-        <div class="container body-content">
-            <div id="mainContent">
-                @RenderBody()
-            </div>
-
-            <aside>
-                <div id="grad2" style="direction:rtl;">
-                    <section>
-                        <header>
-                            <h3>@ViewBag.RSS.Title.Text</h3>
-                            <h4>מסעדות חדשות לפרלמנט</h4>
-                        </header>
-                        <ul>
-                            @for (int i = 0; i < 3; i++)
-                            {
-                                <li>
-                                    <a href="@ViewBag.RSS.Items[i].Links[0].Uri.AbsoluteUri">
-                                        @ViewBag.RSS.Items[i].Title.Text
-                                        <br />
-                                        <br />
-                                        @Html.Raw(ViewBag.RSS.Items[i].Summary.Text)
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </section>
-                </div>
-            </aside>
-
-            @* Map is shown only for logged in users *@
-            <div class="panel panel-default">
-                <div class="panel-heading">מסעדות מומלצות של שאולי</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div id="map_canvas" style="height: 500px; width: 500px; float:right;"></div>
-                        </div>
-                        <h4>רק משתמשים מחוברים יכולים לראות את המפה</h4>
-                    </div>
-                </div>
-            </div>
-            
-            <hr />
-        </div>
 
 
-        <footer>
-            <!-- Footer -->
-            <div>
-                <section id="about">
-                    <header>
-                        <h3>About</h3>
-                    </header>
-                    <p>This is the blog of shauli, in this blog you can ask any question you want and shauli will answer it.</p>
-                </section>
-                <section id="blogroll">
-                    <header>
-                        <h3>Blogroll</h3>
-                    </header>
-                    <ul>
-                        <li><a href="#">NETTUTS+</a></li>
-                        <li><a href="#">FreelanceSwitch</a></li>
-                    </ul>
-                </section>
-                <section id="popular">
-                    <header>
-                        <h3>Popular</h3>
-                    </header>
-                    <ul>
-                        <li><a href="#">This is the title of a blog post</a></li>
-                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><a href="#">Consectetur adipisicing elit, sed do eiusmod</a></li>
-                    </ul>
-                </section>
-            </div>
-        </footer>
-
-    </body>
-}
 </html>
 

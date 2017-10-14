@@ -12,7 +12,17 @@
         </header>
 
         <dl>
-            <dd>@Html.DisplayFor(model => model.Content)</dd>
+            <dd class="post-content">@Html.DisplayFor(model => model.Content)</dd>
+
+            @if ( Model.Location != null)
+            {
+            <dd>
+                <iframe width="400"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB7VYmBoHHgTqnPiB6qLYWaQteYK81ooxw&q=@Html.DisplayFor(model => model.Location)" allowfullscreen></iframe>
+            </dd>
+            }
 
             @if (File.Exists(Server.MapPath("~/Uploads/") + Model.ID + ".png"))
             {

@@ -62,7 +62,7 @@ namespace ShauliBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,AuthorWebsite,PublishDate,Content")] Post post,
+        public ActionResult Create([Bind(Include = "ID,Title,AuthorWebsite,PublishDate,Content,Location")] Post post,
                                     HttpPostedFileBase image, HttpPostedFileBase video,
                                     bool chk_image, bool chk_video)
         {
@@ -124,7 +124,7 @@ namespace ShauliBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,Author,AuthorWebsite,PublishDate,Content")] Post post,
+        public ActionResult Edit([Bind(Include = "ID,Title,Author,AuthorWebsite,PublishDate,Content,Location")] Post post,
                                   HttpPostedFileBase image, HttpPostedFileBase video,
                                   bool chk_image, bool chk_video)
         {
