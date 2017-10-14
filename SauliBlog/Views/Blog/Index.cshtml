@@ -17,25 +17,10 @@
     <input type="text" value="" name="Author" id="Author" size="10" autocomplete="off">
     <div id="author-suggesstion-box"></div>
     <br />
-    <input type="submit" value="Search Post">
+    <input type="submit" name="submmit_button" value="Search Post">
+    <input type="submit" name="submmit_button" value="Search by Comments">
 </form>
-<form action="/Blog/CountPostByWriter" method="post">
-    <input type="submit" value="Show Statistics">
-</form> 
 
-<form action="/Blog/RecommendPost" method="post">
-    <input type="submit" value="Recommend Posts For Me" onclick="UpdateName()">
-</form>
-<script>
-    function UpdateName() {
-        // Retrieve
-        console.log("Retrive data");
-        console.log(localStorage.getItem("name"));
-        console.log(localStorage.getItem("id"));
-        document.getElementById("name").value = Session["name"];
-        document.getElementById("id").value = Session["id"];
-    }
-</script>
 <h4>
     @ViewBag.Context
 </h4>
@@ -51,7 +36,7 @@
 {
     <hr />
     <p>
-        <h3>No posts yet.</h3>
+        <h3>No posts.</h3>
     </p>
     <hr />
 }
@@ -64,7 +49,11 @@ else
         <p class="post-container">
             @Html.Partial("Post", post)
             @Html.Partial("CommentList", post.Comments)
-            @Html.Partial("CommentAdd", new ShauliBlog.Models.Comment { PostID = post.ID })
+
+            @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
+            {
+                @Html.Partial("CommentAdd", new ShauliBlog.Models.Comment { PostID = post.ID })
+            }
         </p>
     }
 

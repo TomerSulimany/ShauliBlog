@@ -33,14 +33,21 @@ namespace ShauliBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CommentAdd([Bind(Include = "ID,Title,Author,AuthorWebsite,WhenTaken,Content,PostID")] Comment comment)
+        public ActionResult CommentAdd([Bind(Include = "ID,Title,AuthorWebsite,WhenTaken,Content,PostID")] Comment comment)
         {
+            if ((Session["logged_in"] == null) || (Session["logged_in"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             Post post = db.Posts.Find(comment.PostID);
 
             if (post == null)
             {
                 return HttpNotFound();
             }
+
+            comment.Author = (string)Session["name"];
 
             if (ModelState.IsValid)
             {
@@ -90,8 +97,13 @@ namespace ShauliBlog.Controllers
 
 
         [HttpPost, ActionName("SearchPost")]
-        public ActionResult SearchPost(DateTime? PublishDate, string Title, string Author)
+        public ActionResult SearchPost(DateTime? PublishDate, string Title, string Author, string submmit_button)
         {
+            if (submmit_button == "Search by Comments")
+            {
+                return (SearchComment(PublishDate, Title, Author));
+            }
+
             ViewBag.Context = "Search by publish date: " + PublishDate + ", Title: " + Title + ", Author: " + Author;
             if (PublishDate == null)
             {
@@ -111,8 +123,8 @@ namespace ShauliBlog.Controllers
 
         // ============================== Statistics ==============================
 
-        [HttpPost, ActionName("CountPostByWriter")]
-        public ActionResult CountPostByWriter()
+        [HttpGet, ActionName("Statistics")]
+        public ActionResult Statistics()
         {
             var q = db.Posts.GroupBy(p => new { Name = p.Author })
                 .Select(p => new CountPostObj()
@@ -134,32 +146,69 @@ namespace ShauliBlog.Controllers
             return View("SimpleStatistics");
         }
 
-        [HttpPost, ActionName("RecommendPost")]
+        [HttpGet, ActionName("RecommendPost")]
         public ActionResult RecommendPost()
         {
             ViewBag.Comments = db.Comments.ToList();
             ViewBag.Posts = new List<PostWithFans>();
+
+            List<string>  likedAuthers = new List<string>();
+
             string UserName = "";
             if (Session["logged_in"] != null)
             {
                 UserName = Session["name"].ToString().ToLower();
             }
+            else
+            {
+                ViewBag.Posts = JoinPostWithFans().ToList();
+                ViewBag.Comments = db.Comments.ToList();
 
-            var writerPosts = JoinPostWithFans().Where(p => UserName == p.post.Author.ToLower());
-            var nonWriterPosts = JoinPostWithFans().Where(p => UserName != p.post.Author.ToLower());
+                Init();
+
+                return View("Index");
+            }
+
+            var nonWriterPosts = JoinPostWithFans().Where(p => UserName.ToLower() != p.post.Author.ToLower());
             foreach (var obj1 in nonWriterPosts)
             {
                 var post = obj1.post;
-                foreach (var obj2 in writerPosts)
+                foreach (var comm in post.Comments)
                 {
-                    var writerPost = obj2.post;
-                    if (post.Content.ToLower().Contains(writerPost.Title.ToLower()))
+                    if (comm.Author.ToLower() == UserName.ToLower())
                     {
-                        ViewBag.Posts.Add(obj1);
+                        if (!likedAuthers.Contains(post.Author.ToLower()))
+                        {
+                            likedAuthers.Add(post.Author.ToLower());
+                        }
                     }
                 }
             }
 
+            bool flag = true;
+            foreach (var obj1 in nonWriterPosts)
+            {
+                flag = true;
+                var post = obj1.post;
+                foreach (var f in likedAuthers)
+                {
+                    if (post.Author.ToLower() == f.ToLower())
+                    {
+                        foreach (var comm in post.Comments)
+                        {
+                            if (comm.Author.ToLower() == UserName.ToLower())
+                            {
+                                flag = false;
+                            }
+                        }
+                        if (flag)
+                        {
+                            ViewBag.Posts.Add(obj1);
+                        }
+                    }
+                }
+            }
+            
 
             return View("Index");
         }
@@ -177,6 +226,28 @@ namespace ShauliBlog.Controllers
             }
         }
 
+        [HttpPost, ActionName("SearchComment")]
+        public ActionResult SearchComment(DateTime? WhenTaken, string Title, string Author)
+        {
+            ViewBag.Context = "Search comment date:" + WhenTaken + ", Title:" + Title + ", Author: " + Author;
+
+            if (WhenTaken == null)
+            {
+                ViewBag.Posts = JoinPostWithFans().Where(p => (p.post.Comments.Where(c => c.Title.Contains(Title) &&
+                                                                                          c.Author.Contains(Author)).ToList().Count() >= 1)).ToList();
+            }
+            else
+            {
+                ViewBag.Posts = JoinPostWithFans().Where(p => (p.post.Comments.Where(
+                        c => c.Title.Contains(Title) &&
+                        c.Author.Contains(Author) &&
+                        EntityFunctions.TruncateTime(c.WhenTaken) == EntityFunctions.TruncateTime(WhenTaken)).ToList().Count() >= 1)).ToList();
+            }
+
+            ViewBag.Comments = db.Comments.ToList();
+
+            return View("Index");
+        }
         private void Init()
         {
             // Create uploads directory

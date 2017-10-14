@@ -26,7 +26,6 @@
     </head>
     <body>
 
-        <aside>
             <div id="grad2" style="direction:rtl;">
                 <section>
                     <header>
@@ -38,9 +37,6 @@
                         {
                         <li>
                             <a href="@ViewBag.RSS.Items[i].Links[0].Uri.AbsoluteUri">
-                                @ViewBag.RSS.Items[i].Title.Text
-                                <br />
-                                <br />
                                 @Html.Raw(ViewBag.RSS.Items[i].Summary.Text)
                             </a>
                         </li>
@@ -48,26 +44,6 @@
                     </ul>
                 </section>
             </div>
-        </aside>
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        <table class="table">
-            <tr>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-                </td>
-            </tr>
-            }
-
-        </table>
     </body>
 </html>

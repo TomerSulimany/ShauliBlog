@@ -154,6 +154,10 @@
     <Compile Include="Migrations\201710141925081_Location.Designer.cs">
       <DependentUpon>201710141925081_Location.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710142232599_shit.cs" />
+    <Compile Include="Migrations\201710142232599_shit.Designer.cs">
+      <DependentUpon>201710142232599_shit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -214,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710141925081_Location.resx">
       <DependentUpon>201710141925081_Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710142232599_shit.resx">
+      <DependentUpon>201710142232599_shit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

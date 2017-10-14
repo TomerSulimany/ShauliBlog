@@ -15,7 +15,7 @@ namespace ShauliBlog.Models
         [DisplayName("Title"), Required, StringLength(100)]
         public string Title { get; set; }
 
-        [DisplayName("Author"), Required, StringLength(30)]
+        [DisplayName("Author"), StringLength(30)]
         public string Author { get; set; }
 
         [DisplayName("Website"), StringLength(30), Url]

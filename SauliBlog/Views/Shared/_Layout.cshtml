@@ -27,11 +27,16 @@
                             <li>@Html.ActionLink("Manage posts", "Index", "Posts")</li>
                         }
                     
-                        <li class="subscribe"><a href="#" class="rss">Subscribe via. RSS</a></li>
                     
 
-                        <li>@Html.ActionLink("Twitter", "Index", "Twitter")</li>
+                        <li>@Html.ActionLink("Twitter", "Index", "Twitters")</li>
+                        <li>@Html.ActionLink("Statistics", "Statistics", "Blog")</li>
+                        @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
+                        {
+                            <li>@Html.ActionLink("Recommended posts", "RecommendPost", "Blog")</li>
+                        }
 
+                        <li class="subscribe"><a href="#" class="rss"></a></li>
                     </ul>
                 </div>
             </div>
