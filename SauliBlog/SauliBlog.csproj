@@ -63,6 +63,7 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -133,6 +134,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\TwittersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,11 +142,16 @@
     <Compile Include="Migrations\201710092117542_Migration33.Designer.cs">
       <DependentUpon>201710092117542_Migration33.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131304084_test.cs" />
+    <Compile Include="Migrations\201710131304084_test.Designer.cs">
+      <DependentUpon>201710131304084_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Fan.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Twitter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +178,11 @@
     <Content Include="Views\Fan\AutoCompleteFan.cshtml" />
     <Content Include="Views\Blog\SimpleStatistics.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Twitters\Create.cshtml" />
+    <Content Include="Views\Twitters\Delete.cshtml" />
+    <Content Include="Views\Twitters\Details.cshtml" />
+    <Content Include="Views\Twitters\Edit.cshtml" />
+    <Content Include="Views\Twitters\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -185,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710092117542_Migration33.resx">
       <DependentUpon>201710092117542_Migration33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131304084_test.resx">
+      <DependentUpon>201710131304084_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

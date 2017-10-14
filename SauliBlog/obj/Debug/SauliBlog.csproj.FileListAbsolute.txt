@@ -81,8 +81,6 @@ C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\
 C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\bin\EntityFramework.SqlServer.xml
 C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.init.resources
 C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.csproj.GenerateResource.Cache
-C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.ChangedHeaderToTitle.resources
-C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.revertType.resources
 D:\College\Web\ShauliBlog\SauliBlog\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 D:\College\Web\ShauliBlog\SauliBlog\bin\roslyn\Microsoft.CodeAnalysis.dll
 D:\College\Web\ShauliBlog\SauliBlog\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
@@ -248,3 +246,5 @@ d:\C50-b-18z\Desktop\elad\לימודים\אפליקציות\FinalProject\SauliBl
 d:\C50-b-18z\Desktop\elad\לימודים\אפליקציות\FinalProject\SauliBlog\obj\Debug\SauliBlog.csproj.GenerateResource.Cache
 d:\C50-b-18z\Desktop\elad\לימודים\אפליקציות\FinalProject\SauliBlog\obj\Debug\SauliBlog.csproj.CoreCompileInputs.cache
 d:\C50-b-18z\Desktop\elad\לימודים\אפליקציות\FinalProject\SauliBlog\obj\Debug\SauliBlog.Migrations.Migration33.resources
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.Migration33.resources
+C:\Users\TomerSu\Documents\Visual Studio 2017\Projects\ShauliBlog\SauliBlog\obj\Debug\SauliBlog.Migrations.test.resources
