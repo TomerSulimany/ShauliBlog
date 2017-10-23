@@ -131,13 +131,18 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\FanController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710081916233_init.cs" />
-    <Compile Include="Migrations\201710081916233_init.Designer.cs">
-      <DependentUpon>201710081916233_init.cs</DependentUpon>
+    <Compile Include="Migrations\201710221449574_InitialCreate.cs" />
+    <Compile Include="Migrations\201710221449574_InitialCreate.Designer.cs">
+      <DependentUpon>201710221449574_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710221604032_Name1.cs" />
+    <Compile Include="Migrations\201710221604032_Name1.Designer.cs">
+      <DependentUpon>201710221604032_Name1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -168,6 +173,9 @@
     <Content Include="Views\Shared\CommentList.cshtml" />
     <Content Include="Views\Shared\Post.cshtml" />
     <Content Include="Views\Fan\AutoCompleteFan.cshtml" />
+    <Content Include="Views\Blog\SimpleStatistics.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,6 +187,14 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710081916233_init.resx">
       <DependentUpon>201710081916233_init.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710221449574_InitialCreate.resx">
+      <DependentUpon>201710221449574_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710221604032_Name1.resx">
+      <DependentUpon>201710221604032_Name1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

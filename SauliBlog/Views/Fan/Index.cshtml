@@ -46,10 +46,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Seniority)
             </td>
+            @if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
+            {
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
+            }
         </tr>
     }
 
