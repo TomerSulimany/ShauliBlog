@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShauliBlog.Models;
+using System.Data.Entity.Core.Objects;
 
 namespace ShauliBlog.Controllers
 {
@@ -17,9 +18,11 @@ namespace ShauliBlog.Controllers
         // GET: Blog
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
-        }
+            ViewBag.Posts = JoinPostWithFans().ToList();
+            ViewBag.Comments = db.Comments.ToList();
 
+            return View();
+        }
 
         // POST: Blog/CommentAdd
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -73,6 +76,29 @@ namespace ShauliBlog.Controllers
 
             return q;
         }
+
+
+        [HttpPost, ActionName("SearchPost")]
+        public ActionResult SearchPost(DateTime? PublishDate, string Title, string Author)
+        {
+            ViewBag.Context = "Search by publish date: " + PublishDate + ", Title: " + Title + ", Author: " + Author;
+            if (PublishDate == null)
+            {
+                ViewBag.Posts = JoinPostWithFans().Where(p => (p.post.Title.Contains(Title)) &&
+                p.post.Author.Contains(Author)).ToList();
+            }
+            else
+            {
+                ViewBag.Posts = JoinPostWithFans().Where(p => (p.post.Title.Contains(Title)) &&
+                (p.post.Author.Contains(Author)) &&
+                (EntityFunctions.TruncateTime(p.post.PublishDate) == EntityFunctions.TruncateTime(PublishDate))).ToList();
+            }
+            ViewBag.Comments = db.Comments.ToList();
+
+            return View("Index");
+        }
+
+        // ============================== Statistics ==============================
 
         [HttpPost, ActionName("CountPostByWriter")]
         public ActionResult CountPostByWriter()
