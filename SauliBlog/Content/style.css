@@ -201,10 +201,19 @@ aside {
 =COMMENTS
 ------------------------------*/
 
+.comments-list, .add-comment {
+    display: none;
+    width: 50%;
+    margin: 0 auto;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+}
+
 #comments {
     margin-top: 21px;
     padding-top: 22px;
-    border-top: 1px solid #d7d7d7;
 }
 
     #comments article {

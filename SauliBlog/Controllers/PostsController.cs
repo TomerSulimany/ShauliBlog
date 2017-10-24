@@ -18,12 +18,22 @@ namespace ShauliBlog.Controllers
         // GET: Posts
         public ActionResult Index()
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             return View(db.Posts.ToList());
         }
 
         // GET: Posts/Details/5
         public ActionResult Details(int? id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +49,11 @@ namespace ShauliBlog.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
+            if ((Session["logged_in"] == null) || (Session["logged_in"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             return View();
         }
 
@@ -47,13 +62,20 @@ namespace ShauliBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Author,AuthorWebsite,PublishDate,Content")] Post post,
+        public ActionResult Create([Bind(Include = "ID,Title,AuthorWebsite,PublishDate,Content")] Post post,
                                     HttpPostedFileBase image, HttpPostedFileBase video,
                                     bool chk_image, bool chk_video)
         {
+            if ((Session["logged_in"] == null) || (Session["logged_in"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (ModelState.IsValid)
             {
                 post.PublishDate = DateTime.Now;
+                post.FanUser = (int)Session["id"];
+                post.Author = (string)Session["name"];
                 db.Posts.Add(post);
                 db.SaveChanges();
 
@@ -80,6 +102,11 @@ namespace ShauliBlog.Controllers
         // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,9 +128,16 @@ namespace ShauliBlog.Controllers
                                   HttpPostedFileBase image, HttpPostedFileBase video,
                                   bool chk_image, bool chk_video)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (ModelState.IsValid)
             {
                 post.PublishDate = DateTime.Now;
+                post.FanUser = (int)Session["id"];
+                post.Author = (string)Session["name"];
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -145,6 +179,11 @@ namespace ShauliBlog.Controllers
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -162,6 +201,11 @@ namespace ShauliBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             Post post = db.Posts.Find(id);
 
             // Delete the image

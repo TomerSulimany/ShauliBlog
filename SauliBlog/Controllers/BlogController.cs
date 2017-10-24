@@ -21,6 +21,8 @@ namespace ShauliBlog.Controllers
             ViewBag.Posts = JoinPostWithFans().ToList();
             ViewBag.Comments = db.Comments.ToList();
 
+            Init();
+
             return View();
         }
 
@@ -66,13 +68,13 @@ namespace ShauliBlog.Controllers
         public IEnumerable<PostWithFans> JoinPostWithFans()
         {
             var q = db.Posts.Join(db.Fans,
-                p => p.FanUser,
-                f => f.ID,
-                (p, f) => new PostWithFans()
-                {
-                    post = p,
-                    FanName = f.Name + " " + f.Surname
-                });
+                                  p => p.FanUser,
+                                  f => f.ID,
+                                  (p, f) => new PostWithFans()
+                                  {
+                                      post = p,
+                                      FanName = f.Name + " " + f.Surname
+                                  });
 
             return q;
         }
@@ -140,5 +142,37 @@ namespace ShauliBlog.Controllers
             return View("Index");
         }
 
+        
+        private void Init()
+        {
+            // Create uploads directory
+            System.IO.Directory.CreateDirectory(Server.MapPath("~/Uploads/"));
+
+            // Add admin
+            var query = db.Fans.Where(fan => fan.Name == "admin" && fan.Surname == "admin");
+            if (query.Count() == 0)
+            {
+                db.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Fans', RESEED, 0)");
+                var all = from c in db.Fans select c;
+                db.Fans.RemoveRange(all);
+                db.SaveChanges();
+
+                Fan fan = new Fan()
+                {
+                    Name = "admin",
+                    Surname = "admin",
+                    Gender = Gender.Male,
+                    Birthday = DateTime.Now,
+                    ID = 1,
+                    Seniority = 99
+                };
+
+                if (ModelState.IsValid)
+                {
+                    db.Fans.Add(fan);
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }

@@ -170,7 +170,6 @@
     <Content Include="Views\Shared\Post.cshtml" />
     <Content Include="Views\Fan\AutoCompleteFan.cshtml" />
     <Content Include="Views\Blog\SimpleStatistics.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

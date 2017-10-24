@@ -62,6 +62,11 @@ namespace ShauliBlog.Controllers
         // GET: Fans/Edit/5
         public ActionResult Edit(int? id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,6 +86,11 @@ namespace ShauliBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Surname,Gender,Birthday,Seniority")] Fan fan)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(fan).State = EntityState.Modified;
@@ -94,6 +104,11 @@ namespace ShauliBlog.Controllers
         // GET: Fans/Delete/5
         public ActionResult Delete(int? id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,6 +126,11 @@ namespace ShauliBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if ((Session["admin"] == null) || (Session["admin"].Equals(false)))
+            {
+                return RedirectToAction("Index", "Blog");
+            }
+
             Fan fan = db.Fans.Find(id);
 
             db.Fans.Remove(fan);

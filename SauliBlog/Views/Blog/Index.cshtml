@@ -1,23 +1,35 @@
 ﻿@model IEnumerable<ShauliBlog.Models.Post>
 
 <script src="~/Scripts/FanAutoComplete.js"></script>
+
 @{
     ViewBag.Title = "Blog";
 }
 
 <form action="/Blog/SearchPost" method="post">
-    <span>Data:</span> 
+    <span>Date:</span> 
     <input type="date" name="PublishDate" id="PublishDate" size="15">
     <br />
-    <span>Author:</span> 
+    <span>Title:</span> 
+    <input type="text" name="Title" id="Title" size="25" autocomplete="off">
+    <br />
+    <span>Author:</span>
     <input type="text" value="" name="Author" id="Author" size="10" autocomplete="off">
     <div id="author-suggesstion-box"></div>
     <br />
-    <span>Email:</span>
-    <input type="email" name="WriterEmail" id="WriterEmail" size="25">
-    <br />
     <input type="submit" value="Search Post">
 </form>
+
+<h4>
+    @ViewBag.Context
+</h4>
+
+@if ((Session["logged_in"] != null) && (Session["logged_in"].Equals(true)))
+{
+    <p>
+        @Html.ActionLink("Create New Post", "Create", "Posts")
+    </p>
+}
 
 @if (ViewBag.Posts.Count == 0)
 {
@@ -33,20 +45,11 @@ else
     {
         var post = (ShauliBlog.Models.Post)item.post;
         <hr />
-        <p>
+        <p class="post-container">
             @Html.Partial("Post", post)
-        </p>
-
-        <p>
             @Html.Partial("CommentList", post.Comments)
+            @Html.Partial("CommentAdd", new ShauliBlog.Models.Comment { PostID = post.ID })
         </p>
-
-        <p>
-            @Html.Partial("CommentAdd", new ShauliBlog.Models.Comment { PostID = item.ID })
-        </p>
-
-        <hr />
-
     }
 
     <form action="/Blog/CountPostByWriter" method="post">
@@ -69,3 +72,34 @@ else
     </script>-->
 }
 
+<script>
+    $(document).ready(function () {
+        // document click-to-close
+        $(document).on("click", function () {
+            closeAllWindows();
+        });
+
+        // click on window / children elements
+        $(".comments-list , .add-comment").on("click", function (e) {
+            e.stopPropagation();	// prevent document click-to-close
+        });
+
+        // show comments button
+        $(".show-comments-btn").on("click", function (e) {
+            closeAllWindows();
+            $(this).parent("section").find(".comments-list").show();
+            e.stopPropagation();	// prevent document click-to-close
+        });
+
+        // add comment button
+        $(".add-comment-btn").on("click", function (e) {
+            closeAllWindows();
+            $(this).parent("form").find(".add-comment").show();
+            e.stopPropagation();	// prevent document click-to-close
+        });
+    });
+
+    function closeAllWindows() {
+        $(".comments-list:visible , .add-comment:visible").hide();
+    }
+</script>

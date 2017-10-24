@@ -4,7 +4,10 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+
+    <button type="button" class="add-comment-btn btn btn-info" value="show">add comment</button>
+
+   <div class="add-comment panel panel-info form-horizontal">
         <h3>Add a comment</h3>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
