@@ -19,7 +19,23 @@
     <br />
     <input type="submit" value="Search Post">
 </form>
+<form action="/Blog/CountPostByWriter" method="post">
+    <input type="submit" value="Show Statistics">
+</form> 
 
+<form action="/Blog/RecommendPost" method="post">
+    <input type="submit" value="Recommend Posts For Me" onclick="UpdateName()">
+</form>
+<script>
+    function UpdateName() {
+        // Retrieve
+        console.log("Retrive data");
+        console.log(localStorage.getItem("name"));
+        console.log(localStorage.getItem("id"));
+        document.getElementById("name").value = Session["name"];
+        document.getElementById("id").value = Session["id"];
+    }
+</script>
 <h4>
     @ViewBag.Context
 </h4>
@@ -52,24 +68,7 @@ else
         </p>
     }
 
-    <form action="/Blog/CountPostByWriter" method="post">
-        <input type="submit" value="Show Statistics">
-    </form>
-   <!-- <form action="/Blog/RecommendPost" id="recommend" method="post">
-        <input type="hidden" name="first_name" id="first_name">
-        <input type="hidden" name="last_name" id="last_name">
-        <input type="submit" value="Recommend Posts For Me" onclick="UpdateName()">
-    </form> 
 
-    <script>
-    function UpdateName() {
-        // Retrieve
-        console.log("Retrive data");
-        console.log(localStorage.getItem("fb_first_name"));
-        document.getElementById("first_name").value = localStorage.getItem("fb_first_name");
-        document.getElementById("last_name").value = localStorage.getItem("fb_last_name");
-    }
-    </script>-->
 }
 
 <script>

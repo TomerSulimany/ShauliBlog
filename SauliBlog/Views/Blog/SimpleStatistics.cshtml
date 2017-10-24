@@ -6,22 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- <!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-    </div>
-</body>
-</html> -->
-
 <!doctype html>
-<!-- ---- Students : Ron - 205386253, Shani - 311299069 ---- -->
 <html>
+
 <head>
     <link rel="stylesheet" href="~/css/BlogCSS.css" type="text/css" media="screen" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -61,11 +48,12 @@
             </section>
         </div>
     </div>
+
     <header>
         <h3> statistics by writer </h3>
     </header>
-    <div id="pie"></div>
-    <script src="d3.v4.min.js"></script>
+    <div id="pie">
+    <script src="d3.v2.min.js"></script>
     <script>
         (function (d3) {
             'use strict';
@@ -78,7 +66,7 @@
             var width = 360;
             var height = 360;
             var radius = Math.min(width, height) / 2;
-            var color = d3.scaleOrdinal(d3.schemeCategory20b);
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
             var pie = d3.pie()
                 .value(function (d) { return d.count; })(data);
             var arc = d3.arc()
@@ -107,75 +95,29 @@
                 .style("fill", "#000");
         })(window.d3);
     </script>
-    </br>
+    </div>
+    <br />
     <header>
-        <h3> Post statistics by day of week </h3>
+        <h3> Post statistics by Gender </h3>
     </header>
-    <div id="pie2"></div>
-    <script src="d3.v4.min.js"></script>
-    <script>
+    <br />
+    <div id="pie3">
+        <br />
+
+        <script>
         (function (d3) {
             'use strict';
             var data = [];
-            var array = @Html.Raw(Json.Encode(@ViewBag.Posts));
-            var daysArr = new Array(7);
-            for (var i = 0; i < daysArr.length; i++) {
-                daysArr[i] = 0;
-            }
+            var array = @Html.Raw(Json.Encode(@ViewBag.CountPostByGender));
             for (var i = 0; i < array.length; i++) {
-                var date = new Date(parseInt(array[i].post.PublishDate.replace(/\/Date\((\d+)\)\//gi, "$1")))
-                daysArr[date.getUTCDay()]++;
-            }
-            console.log(daysArr);
-            for (var i = 0; i < daysArr.length; i++) {
-                if (daysArr[i] != 0) {
-                    var day;
-                    switch (i)
-                    {
-                        case 0:
-                            {
-                                day = "sunday";
-                                break;
-                            }
-                        case 1:
-                            {
-                                day = "monday";
-                                break;
-                            }
-                        case 2:
-                            {
-                                day = "tuesday";
-                                break;
-                            }
-                        case 3:
-                            {
-                                day = "wednesday";
-                                break;
-                            }
-                        case 4:
-                            {
-                                day = "thursday";
-                                break;
-                            }
-                        case 5:
-                            {
-                                day = "friday";
-                                break;
-                            }
-                        case 6:
-                            {
-                                day = "saturday";
-                                break;
-                            }
-                    }
-                    data.push({ label: day, count: daysArr[i] });
-                }
+                //data.push({ label: ShauliBlog.Models(array[i].Gender).toString(), count: array[i].Count }); 
+                data.push({ label: array[i].Gender ? "male" : "female", count: array[i].Count }); 
             }
 
             var width = 360;
             var height = 360;
             var radius = Math.min(width, height) / 2;
-            var color = d3.scaleOrdinal(d3.schemeCategory20b);
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
             var pie = d3.pie()
                 .value(function (d) { return d.count; })(data);
             var arc = d3.arc()
@@ -185,7 +127,7 @@
             var labelArc = d3.arc()
                 .outerRadius(radius - 80)
                 .innerRadius(radius - 80);
-            var svg = d3.select("#pie2")
+            var svg = d3.select("#pie")
                 .append("svg")
                 .attr("width", width)
                 .attr("height", height)
@@ -203,7 +145,8 @@
                 .text(function (d) { return d.data.label; })
                 .style("fill", "#000");
         })(window.d3);
-    </script>
+        </script>
+    </div>
 </body>
 </html>
 
